@@ -1,4 +1,4 @@
-# QA Automation Framework (Web + API)
+## QA Automation Framework (Web + API)
 
 Framework de automação desenvolvido com foco em boas práticas de engenharia de qualidade, cobrindo testes Web e API, com estrutura escalável e preparada para CI/CD.
 
