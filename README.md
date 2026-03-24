@@ -1,6 +1,6 @@
-# QA Automation Framework (Web + API + Performance)
+# QA Automation Framework (Web + API)
 
-Framework de automação desenvolvido com foco em boas práticas de engenharia de qualidade, cobrindo testes Web, API e Performance, com estrutura escalável e preparada para CI/CD.
+Framework de automação desenvolvido com foco em boas práticas de engenharia de qualidade, cobrindo testes Web e API, com estrutura escalável e preparada para CI/CD.
 
 ---
 
@@ -12,95 +12,95 @@ Framework de automação desenvolvido com foco em boas práticas de engenharia d
 - Cucumber (BDD)
 - RestAssured
 - JUnit
-- JMeter (Performance)
-- Allure Report
 - GitHub Actions (CI/CD)
 
 ---
 
 ## Estrutura do projeto
 
+```
 src
  └── test
      ├── java
-     │   ├── pages
-     │   ├── steps
-     │   ├── runners
-     │   ├── hooks
-     │   ├── api
+     │   ├── pages        # Page Object Model (POM)
+     │   ├── steps        # Steps Cucumber
+     │   ├── runners      # Runner dos testes
+     │   ├── hooks        # Setup e teardown
+     │   ├── api          # Testes de API
      └── resources
-         └── features
-
-performance
- └── blazedemo.jmx
+         └── features     # Cenários BDD
+```
 
 ---
 
 ## Testes implementados
 
-Web (BDD + Selenium)
+### Web
 - Busca de artigos no Blog do Agi
-- Cenários positivos, negativos e edge cases
+- Validação de resultados
 
-API (RestAssured)
+ Estratégia aplicada:
+- Evitei dependência da UI instável (lupa)
+- Utilizei busca via URL (`?s=`) para garantir estabilidade e reduzir flakiness
+
+---
+
+### API (Dog API)
 - Listagem de raças
 - Busca de imagens por raça
-- Validação de status e tempo de resposta
-
-Performance (JMeter)
-- 50 usuários simultâneos
-- Ramp-up de 10 segundos
-- Duração de 60 segundos
-- SLA < 2000ms
+- Validação de status code e estrutura da resposta
 
 ---
 
-## Como executar
+##  Como executar
 
+### Executar todos os testes
+```bash
 mvn clean test
-
-API:
-mvn -Dtest=DogApiTest test
-
-Web:
-mvn test -Dcucumber.filter.tags="@web"
-
-Headless:
-mvn clean test -Dheadless=true
+```
 
 ---
 
-## Relatórios
+### Executar apenas API
+```bash
+mvn -Dtest=DogApiTest test
+```
 
-Allure:
-mvn allure:serve
+---
 
-Performance:
-jmeter -n -t performance/blazedemo.jmx -l resultado.jtl
-jmeter -g resultado.jtl -o relatorio-performance
+### Executar apenas Web
+```bash
+mvn test -Dcucumber.filter.tags="@web"
+```
+
+---
+
+### Executar em modo headless (pipeline)
+```bash
+mvn clean test -Dheadless=true
+```
 
 ---
 
 ## CI/CD
 
-Executado via GitHub Actions com geração de artefatos.
+O projeto está preparado para execução em pipeline (GitHub Actions), permitindo rodar testes automaticamente a cada push ou pull request.
 
 ---
 
 ## Diferenciais
 
-- POM
-- BDD
-- Web + API + Performance
-- Anti-flakiness
-- Execução CLI
-- CI/CD
-- Evidências (Allure + HTML)
+- Page Object Model (POM)
+- Separação de responsabilidades (Web e API)
+- Testes resilientes (redução de flakiness)
+- Execução integrada via Maven
+- Estrutura escalável
+- Estratégia de estabilização (uso de URL ao invés de UI dinâmica)
 
 ---
 
 ## Autor
 
 Gilvando Matos  
-https://github.com/Gilvando21  
-https://www.linkedin.com/in/gilvando-matos-3a259821/
+ https://github.com/Gilvando21  
+ https://www.linkedin.com/in/gilvando-matos-3a259821/
