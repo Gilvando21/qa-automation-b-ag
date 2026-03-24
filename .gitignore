@@ -1,6 +1,23 @@
+# Build
 target/
-.idea/
-*.iml
-*.log
+
+# Allure
 allure-results/
 allure-report/
+.allure/
+
+# JMeter
+resultado.jtl
+relatorio-performance/
+jmeter.log
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

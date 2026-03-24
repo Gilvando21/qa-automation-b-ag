@@ -1,4 +1,3 @@
-
 package runners;
 
 import org.junit.runner.RunWith;
@@ -9,7 +8,12 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"steps","hooks"},
-        plugin = {"pretty"}
+        plugin = {
+                "pretty",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+                "json:target/cucumber-report.json"
+        },
+        monochrome = true
 )
 public class TestRunner {
 }

@@ -20,7 +20,24 @@ public class BlogSteps {
     }
 
     @Entao("devo visualizar resultados relevantes")
-    public void validar(){
-        Assert.assertTrue(page.temResultados());
+    public void validarResultados(){
+        Assert.assertTrue("Esperado encontrar resultados",
+                page.temResultados());
+    }
+
+    @Entao("devo visualizar mensagem de nenhum resultado")
+    public void validarSemResultados(){
+        // CORREÇÃO: usar método sem espera
+        Assert.assertFalse("Não deveria retornar resultados",
+                page.temResultadosSemEspera());
+    }
+
+    @Entao("devo permanecer na página inicial")
+    public void validarPaginaInicial(){
+        // O site redireciona para busca mesmo vazia (?s=)
+        String url = Hooks.driver.getCurrentUrl();
+
+        Assert.assertTrue("Busca vazia não foi executada corretamente",
+                url.contains("?s="));
     }
 }

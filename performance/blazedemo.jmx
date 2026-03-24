@@ -1,23 +1,51 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="BlazeDemo Test Plan" enabled="true">
-      <stringProp name="TestPlan.comments">Compra de passagem</stringProp>
-    </TestPlan>
+
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="BlazeDemo Performance 250rps" enabled="true"/>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga" enabled="true">
-        <stringProp name="ThreadGroup.num_threads">50</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga 250rps" enabled="true">
+        
+        <stringProp name="ThreadGroup.num_threads">300</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <stringProp name="ThreadGroup.duration">60</stringProp>
+
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">-1</stringProp>
+        </elementProp>
+
       </ThreadGroup>
       <hashTree>
+
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET BlazeDemo" enabled="true">
           <stringProp name="HTTPSampler.domain">www.blazedemo.com</stringProp>
           <stringProp name="HTTPSampler.path">/</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
         </HTTPSamplerProxy>
+        <hashTree>
+
+          <!-- ✔️ Status -->
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Status 200" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1">200</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+          </ResponseAssertion>
+          <hashTree/>
+
+          <!-- ✔️ SLA -->
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Tempo ate 2000ms" enabled="true">
+            <stringProp name="DurationAssertion.duration">2000</stringProp>
+          </DurationAssertion>
+          <hashTree/>
+
+        </hashTree>
+
       </hashTree>
+
     </hashTree>
+
   </hashTree>
 </jmeterTestPlan>

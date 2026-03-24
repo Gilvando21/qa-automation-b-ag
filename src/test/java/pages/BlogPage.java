@@ -26,10 +26,16 @@ public class BlogPage {
         driver.get("https://blogdoagi.com.br/?s=" + termo);
     }
 
+    // 🔥 Usado para cenário positivo (com espera)
     public boolean temResultados(){
         wait.until(driver ->
                 driver.findElements(resultados).size() > 0
         );
+        return driver.findElements(resultados).size() > 0;
+    }
+
+    // 🔥 Usado para cenário negativo (sem espera)
+    public boolean temResultadosSemEspera(){
         return driver.findElements(resultados).size() > 0;
     }
 }
