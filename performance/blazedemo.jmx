@@ -2,13 +2,14 @@
 <jmeterTestPlan version="1.2" properties="5.0" jmeter="5.6.3">
   <hashTree>
 
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="BlazeDemo Performance 250rps" enabled="true"/>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="BlazeDemo Performance Test" enabled="true"/>
     <hashTree>
 
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga 250rps" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Carga Controlada" enabled="true">
         
-        <stringProp name="ThreadGroup.num_threads">300</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <!-- Ajuste realista -->
+        <stringProp name="ThreadGroup.num_threads">50</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
         <stringProp name="ThreadGroup.duration">60</stringProp>
 
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController">
@@ -19,6 +20,13 @@
       </ThreadGroup>
       <hashTree>
 
+        <!-- Controlador de throughput (simula RPS controlado) -->
+        <ConstantThroughputTimer guiclass="TestBeanGUI" testclass="ConstantThroughputTimer" testname="250 RPS Control" enabled="true">
+          <stringProp name="throughput">15000</stringProp>
+          <intProp name="calcMode">1</intProp>
+        </ConstantThroughputTimer>
+        <hashTree/>
+
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GET BlazeDemo" enabled="true">
           <stringProp name="HTTPSampler.domain">www.blazedemo.com</stringProp>
           <stringProp name="HTTPSampler.path">/</stringProp>
@@ -26,7 +34,7 @@
         </HTTPSamplerProxy>
         <hashTree>
 
-          <!-- ✔️ Status -->
+          <!-- Status 200 -->
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Status 200" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="1">200</stringProp>
@@ -35,7 +43,7 @@
           </ResponseAssertion>
           <hashTree/>
 
-          <!-- ✔️ SLA -->
+          <!-- SLA -->
           <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Tempo ate 2000ms" enabled="true">
             <stringProp name="DurationAssertion.duration">2000</stringProp>
           </DurationAssertion>
