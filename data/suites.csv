@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Mar 24 19:24:56 UTC 2026","Tue Mar 24 19:24:59 UTC 2026","2914","","Blog Search","","Deve retornar resultados para termos válidos","","Deve retornar resultados para termos válidos",""
+"passed","Tue Mar 24 19:24:59 UTC 2026","Tue Mar 24 19:25:01 UTC 2026","2188","","Blog Search","","Não deve retornar resultados para termos inexistentes","","Não deve retornar resultados para termos inexistentes",""
+"passed","Tue Mar 24 19:24:43 UTC 2026","Tue Mar 24 19:24:56 UTC 2026","13059","","Blog Search","","Deve retornar resultados para termos válidos","","Deve retornar resultados para termos válidos",""
+"passed","Tue Mar 24 19:25:01 UTC 2026","Tue Mar 24 19:25:02 UTC 2026","770","","Blog Search","","Deve tratar corretamente buscas inválidas ou vazias","","Deve tratar corretamente buscas inválidas ou vazias",""
