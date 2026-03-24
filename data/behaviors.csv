@@ -1,4 +1,4 @@
 "Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
 "","Blog Search","Deve retornar resultados para termos válidos","0","0","2","0","0"
-"","Blog Search","Não deve retornar resultados para termos inexistentes","0","0","1","0","0"
 "","Blog Search","Deve tratar corretamente buscas inválidas ou vazias","0","0","1","0","0"
+"","Blog Search","Não deve retornar resultados para termos inexistentes","0","0","1","0","0"
